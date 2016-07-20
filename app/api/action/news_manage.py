@@ -17,4 +17,4 @@ def delete_newspaper(jou_id, sub_jou_id, name, pub_date):
 
 
 def get_newspapers():
-    return Newspaper.query.all()
+    return str(Newspaper.query.all())

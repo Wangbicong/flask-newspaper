@@ -1,21 +1,9 @@
-from flask_restful import Api, Resource
-from . import api_blueprint
-
-api = Api(api_blueprint)
+from flask_restful import Resource
+from . import api
 
 
-class Newspaper(Resource):
+class HelloWorld(Resource):
     def get(self):
-        return 'get'
+        return 'Welcome to user our api! -- by wbc'
 
-    def post(self):
-        return 'post'
-
-    def put(self):
-        return 'put'
-
-    def delete(self):
-        return 'delete'
-
-api.add_resource(Newspaper, '/')
-
+api.add_resource(HelloWorld, '/')

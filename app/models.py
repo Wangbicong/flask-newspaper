@@ -15,7 +15,12 @@ class Newspaper(db.Model):
         self.pub_date = pub_date
 
     def __repr__(self):
-        return '<Newspaper %r %r>' % (self.name, self.jou_id)
+        dict = {}
+        dict.update(self.__dict__)
+        for key in dict.keys():
+            if key[0] == '_':
+                del dict[key]
+        return str(dict)
 
 
 class User(db.Model):
