@@ -1,4 +1,4 @@
-from app import db, create_app
+from . import db, create_app
 
 
 class Newspaper(db.Model):
