@@ -1,1 +1,2 @@
-debug=True
+DEBUG = False
+SQLALCHEMY_TRACK_MODIFICATIONS = True

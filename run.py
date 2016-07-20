@@ -1,10 +1,9 @@
-from flask import Flask
-from config import *
+from app import create_app, db
 
-app = Flask(__name__)
+app = create_app()
+
 
 @app.route('/')
 def index():
-    return 'Hello World!'
-
-app.run(debug)
+    return 'Hello World!aawa'
+app.run()
