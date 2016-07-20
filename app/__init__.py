@@ -12,10 +12,10 @@ def create_app():
 
     db.init_app(app)
 
-    from .main import main as main_blueprint
+    from .main import main_blueprint
     app.register_blueprint(main_blueprint)
 
-    from .api import api as api_blueprint
+    from .api import api_blueprint
     app.register_blueprint(api_blueprint)
 
     return app

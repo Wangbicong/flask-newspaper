@@ -34,7 +34,7 @@ var/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit main / coverage reports
+# Unit test / coverage reports
 htmlcov/
 .tox/
 .coverage
@@ -93,5 +93,3 @@ ENV/
 
 # Dev Info
 instance
-app/static/
-app/templates/
