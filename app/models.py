@@ -1,4 +1,4 @@
-from . import db, create_app
+from app import create_app, db
 
 
 class Newspaper(db.Model):
@@ -19,7 +19,8 @@ class Newspaper(db.Model):
 
 
 class User(db.Model):
-    phone_num = db.Column(db.String(11), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    phone_num = db.Column(db.String(11), nullable=False)
     name = db.Column(db.String(4), nullable=False)
     sex = db.Column(db.Boolean, nullable=False)
     age = db.Column(db.Integer, nullable=False)
@@ -40,13 +41,13 @@ class Record(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     news_id = db.Column(db.Integer,
                         db.ForeignKey('newspaper.id'))
-    phone_num = db.Column(db.String(11),
-                          db.ForeignKey('user.phone_num'))
+    user_id = db.Column(db.Integer,
+                          db.ForeignKey('user.id'))
     station = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, news_id, phone_num, station):
+    def __init__(self, news_id, user_id, station):
         self.news_id = news_id
-        self.phone_num = phone_num
+        self.user_id = user_id
         self.station = station
 
     def __repr__(self):
