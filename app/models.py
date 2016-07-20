@@ -6,7 +6,7 @@ class Newspaper(db.Model):
     jou_id = db.Column(db.Integer, nullable=False)
     sub_jou_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(20), nullable=False)
-    pub_date = db.Column(db.DateTime, nullable=False)
+    pub_date = db.Column(db.Date, nullable=False)
 
     def __init__(self, jou_id, sub_jou_id, name, pub_date):
         self.jou_id = jou_id
