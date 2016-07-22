@@ -39,7 +39,12 @@ class User(db.Model):
         self.address = address
 
     def __repr__(self):
-        return '<User %r %r>' % (self.name, self.phone_num)
+        dict = {}
+        dict.update(self.__dict__)
+        for key in dict.keys():
+            if key[0] == '_':
+                del dict[key]
+        return str(dict)
 
 
 class Record(db.Model):
@@ -56,8 +61,12 @@ class Record(db.Model):
         self.station = station
 
     def __repr__(self):
-        return '<Record news %r user% r>' % \
-               (self.news_id, self.phone_num)
+        dict = {}
+        dict.update(self.__dict__)
+        for key in dict.keys():
+            if key[0] == '_':
+                del dict[key]
+        return str(dict)
 
 
 def create_database():

@@ -5,4 +5,6 @@ api_blueprint = Blueprint('api', __name__)
 api = Api(api_blueprint)
 
 from .views import *
-from app.api.view.news_view import *
+from .newspapers import *
+from .users import *
+from .records import *
