@@ -11,7 +11,7 @@ class RecordsAPI(Resource):
 class RecordAPI(Resource):
     '''User的id为user的phone number'''
     def get(self, id):
-        return 'record %r' % id
+        return str(Record.query.filter_by(phone_num=id).first())
 
 
 api.add_resource(RecordsAPI, '/record/')

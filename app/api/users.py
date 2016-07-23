@@ -12,7 +12,7 @@ class UsersAPI(Resource):
 class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
-        return 'user %r' % id
+        return str(User.query.filter_by(phone_num=id).first())
 
 
 api.add_resource(UsersAPI, '/user/')

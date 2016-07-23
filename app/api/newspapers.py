@@ -20,7 +20,7 @@ class NewspapersAPI(Resource):
 
 class NewspaperAPI(Resource):
     def get(self, id):
-        return 'newspaper %r' % id
+        return str(Newspaper.query.filter_by(jou_id=id).first())
 
     def post(self):
         return 'post'
