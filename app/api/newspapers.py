@@ -1,7 +1,7 @@
 # -*-coding:utf8 -*-
 from flask_restful import Resource
-from app.models import Newspaper
 from . import api
+from app.models import Newspaper
 
 
 class NewspapersAPI(Resource):

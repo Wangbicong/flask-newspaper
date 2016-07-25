@@ -1,4 +1,4 @@
-from app import create_app, db
+from app import db
 
 
 class Newspaper(db.Model):
@@ -67,11 +67,3 @@ class Record(db.Model):
             if key[0] == '_':
                 del dict[key]
         return str(dict)
-
-
-def create_database():
-    app = create_app()
-    db.create_all(app=app)
-
-if __name__ == '__main__':
-    create_database()
