@@ -1,0 +1,20 @@
+# -*- coding:utf8 -*-
+from requests import get, post, put, delete
+
+data = {
+    'jou_id': 154,
+    'sub_jou_id': 124,
+    'name': '人民日报',
+    'pub_date': '2014-01-01'
+}
+print put('http://localhost:5000/api/newspaper/', data=data)
+
+data = {
+    'phone_num': '13782472197',
+    'name': '焦冠凯',
+    'sex': 1,
+    'age': 20,
+    'address': '人寿公司家属院'
+
+}
+print put('http://localhost:5000/api/user/', data=data)

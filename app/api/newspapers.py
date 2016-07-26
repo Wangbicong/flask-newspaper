@@ -1,7 +1,14 @@
 # -*-coding:utf8 -*-
-from flask_restful import Resource
-from . import api
+from flask_restful import Resource, reqparse
+from app import db
 from app.models import Newspaper
+from . import api
+
+parser = reqparse.RequestParser()
+parser.add_argument('jou_id', type=int, required=True)
+parser.add_argument('sub_jou_id', type=int, required=True)
+parser.add_argument('name', type=unicode, required=True)
+parser.add_argument('pub_date', type=str, required=True)
 
 
 class NewspapersAPI(Resource):
@@ -12,7 +19,10 @@ class NewspapersAPI(Resource):
         return 'post'
 
     def put(self):
-        return 'put'
+        args = parser.parse_args()
+        news = Newspaper(**args)
+        db.session.add(news)
+        db.session.commit()
 
     def delete(self):
         return 'delete'
@@ -20,7 +30,8 @@ class NewspapersAPI(Resource):
 
 class NewspaperAPI(Resource):
     def get(self, id):
-        return str(Newspaper.query.filter_by(jou_id=id).first())
+        return 'get'
+        # return str(Newspaper.query.filter_by(jou_id=id).first())
 
     def post(self):
         return 'post'
