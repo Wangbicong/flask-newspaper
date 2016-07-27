@@ -1,3 +1,5 @@
+# -*-coding:utf8 -*-
+import json
 from app import db
 
 
@@ -15,12 +17,14 @@ class Newspaper(db.Model):
         self.pub_date = pub_date
 
     def __repr__(self):
+        # datetime需要格式化为字符串形式
         dict = {}
-        dict.update(self.__dict__)
-        for key in dict.keys():
-            if key[0] == '_':
-                del dict[key]
-        return str(dict)
+        dict['jou_id'] = int(self.__dict__['jou_id'])
+        dict['sub_jou_id'] = int(self.__dict__['sub_jou_id'])
+        dict['name'] = (self.__dict__['name'])
+        dict['pub_date'] = str(self.__dict__['pub_date'].year) + '-' + \
+                           str(self.__dict__['pub_date'].month) + '-' + str(self.__dict__['pub_date'].day)
+        return json.dumps(dict)
 
 
 class User(db.Model):
@@ -40,11 +44,12 @@ class User(db.Model):
 
     def __repr__(self):
         dict = {}
-        dict.update(self.__dict__)
-        for key in dict.keys():
-            if key[0] == '_':
-                del dict[key]
-        return str(dict)
+        dict['phone_num'] = str(self.__dict__['phone_num'])
+        dict['name'] = (self.__dict__['name'])
+        dict['sex'] = int(self.__dict__['sex'])
+        dict['age'] = int(self.__dict__['age'])
+        dict['address'] = (self.__dict__['address'])
+        return json.dumps(dict)
 
 
 class Record(db.Model):

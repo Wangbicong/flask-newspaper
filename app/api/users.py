@@ -1,4 +1,5 @@
 # -*- coding:utf8 -*-
+from flask import jsonify
 from flask_restful import Resource, reqparse
 from app.models import User
 from app import db
@@ -11,9 +12,10 @@ parser.add_argument('sex', type=int, required=True)
 parser.add_argument('age', type=int, required=True)
 parser.add_argument('address', type=unicode, required=True)
 
+
 class UsersAPI(Resource):
     def get(self):
-        return str(User.query.all())
+        return jsonify(eval(str(User.query.all())))
 
     def put(self):
         args = parser.parse_args()

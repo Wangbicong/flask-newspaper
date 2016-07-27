@@ -1,4 +1,5 @@
 # -*-coding:utf8 -*-
+from flask import jsonify
 from flask_restful import Resource, reqparse
 from app import db
 from app.models import Newspaper
@@ -13,7 +14,7 @@ parser.add_argument('pub_date', type=str, required=True)
 
 class NewspapersAPI(Resource):
     def get(self):
-        return str(Newspaper.query.all())
+        return jsonify(eval(str(Newspaper.query.all())))
 
     def post(self):
         return 'post'
