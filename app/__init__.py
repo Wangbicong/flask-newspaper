@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
-bootstrap = Bootstrap()
 
 
 def create_app():
@@ -13,7 +12,7 @@ def create_app():
     app.config.from_object('config')
     app.config.from_pyfile('../instance/config.py'.replace('/', sep))
 
-    bootstrap.init_app(app)
+    Bootstrap(app)
     db.init_app(app)
 
     from models import Newspaper, User, Record
