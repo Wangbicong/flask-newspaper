@@ -4,6 +4,7 @@ from app import db
 
 
 class Newspaper(db.Model):
+    __tablename__ = 'newspapers'
     id = db.Column(db.Integer, primary_key=True)
     jou_id = db.Column(db.Integer, nullable=False)
     sub_jou_id = db.Column(db.Integer, nullable=False)
@@ -28,6 +29,7 @@ class Newspaper(db.Model):
 
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     phone_num = db.Column(db.String(11), nullable=False)
     name = db.Column(db.String(4), nullable=False)
@@ -53,11 +55,12 @@ class User(db.Model):
 
 
 class Record(db.Model):
+    __tablename__ = 'records'
     id = db.Column(db.Integer, primary_key=True)
     news_id = db.Column(db.Integer,
-                        db.ForeignKey('newspaper.id'))
+                        db.ForeignKey('newspapers.id'))
     user_id = db.Column(db.Integer,
-                          db.ForeignKey('user.id'))
+                          db.ForeignKey('users.id'))
     station = db.Column(db.String(40), nullable=False)
 
     def __init__(self, news_id, user_id, station):

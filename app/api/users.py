@@ -21,7 +21,7 @@ class UsersAPI(Resource):
         args = parser.parse_args()
         news = User(**args)
         db.session.add(news)
-        db.session.commit()
+        # db.session.commit()
 
 
 class UserAPI(Resource):
