@@ -1,3 +1,11 @@
 DEBUG = False
+
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+
+MAIL_SERVER = 'smtp-mail.outlook.com'
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+
+FLASKY_MAIL_SENDER = 'wangbicong@hotmail.com'
+FLASKY_ADMIN = '2024247861@qq.com'

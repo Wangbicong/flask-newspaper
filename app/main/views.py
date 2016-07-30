@@ -1,6 +1,7 @@
-from flask import render_template, redirect, session, url_for, flash
+from flask import render_template, redirect, session, url_for, flash, current_app
 from . import main_blueprint
 from forms import NameForm
+from app.mails import send_email
 
 
 @main_blueprint.route('/', methods=['get', 'post'])
@@ -12,5 +13,7 @@ def index():
             flash('You changed your name!')
         session['name'] = form.name.data
         form.name.data = ''
+        send_email(current_app.config['FLASKY_ADMIN'], 'New User',
+                   'mail/new_user', username=session.get('name'))
         return redirect(url_for('main.index'))
     return render_template('main.html', form=form, name=session.get('name'))
