@@ -1,8 +1,8 @@
 # -*-coding:utf8 -*-
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from app import db
-from app.models import Newspaper
+from .. import db
+from ..models import Newspaper
 from . import api
 
 parser = reqparse.RequestParser()

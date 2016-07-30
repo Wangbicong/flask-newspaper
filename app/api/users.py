@@ -1,8 +1,8 @@
 # -*- coding:utf8 -*-
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from app.models import User
-from app import db
+from ..models import User
+from .. import db
 from . import api
 
 parser = reqparse.RequestParser()

@@ -1,6 +1,6 @@
 # -*-coding:utf8 -*-
 from flask_restful import Resource
-from app.models import Record
+from ..models import Record
 from . import api
 
 class RecordsAPI(Resource):
