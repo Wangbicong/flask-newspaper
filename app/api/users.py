@@ -27,8 +27,8 @@ class UsersAPI(Resource):
 class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
-        return str(User.query.filter_by(phone_num=id).first())
+        return jsonify(eval(str(User.query.filter_by(phone_num=id).first_or_404())))
 
 
 api.add_resource(UsersAPI, '/user/')
-api.add_resource(UserAPI, '/user/<int:id>')
+api.add_resource(UserAPI, '/user/<int:id>/')

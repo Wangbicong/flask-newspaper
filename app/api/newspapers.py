@@ -23,6 +23,7 @@ class NewspapersAPI(Resource):
         args = parser.parse_args()
         news = Newspaper(**args)
         db.session.add(news)
+        return 200
         # db.session.commit()
 
     def delete(self):
@@ -44,4 +45,4 @@ class NewspaperAPI(Resource):
         return 'delete'
 
 api.add_resource(NewspapersAPI, '/newspaper/')
-api.add_resource(NewspaperAPI, '/newspaper/<int:id>')
+api.add_resource(NewspaperAPI, '/newspaper/<int:id>/')

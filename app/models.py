@@ -75,3 +75,24 @@ class Record(db.Model):
             if key[0] == '_':
                 del dict[key]
         return str(dict)
+
+
+class Subscription(db.Model):
+    __tablename__ = 'subscriptions'
+    id = db.Column(db.Integer, primary_key=True)
+    news_id = db.Column(db.Integer,
+                        db.ForeignKey('newspapers.id'))
+    user_id = db.Column(db.Integer,
+                          db.ForeignKey('users.id'))
+
+    def __init__(self, news_id, user_id, station):
+        self.news_id = news_id
+        self.user_id = user_id
+
+    def __repr__(self):
+        dict = {}
+        dict.update(self.__dict__)
+        for key in dict.keys():
+            if key[0] == '_':
+                del dict[key]
+        return str(dict)
