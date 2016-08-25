@@ -32,12 +32,12 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     phone_num = db.Column(db.String(11), nullable=False)
-    name = db.Column(db.String(4), nullable=False)
-    sex = db.Column(db.Boolean, nullable=False)
-    age = db.Column(db.Integer, nullable=False)
-    address = db.Column(db.String(40), nullable=False)
+    name = db.Column(db.String(4), nullable=True)
+    sex = db.Column(db.Boolean, nullable=True)
+    age = db.Column(db.Integer, nullable=True)
+    address = db.Column(db.String(40), nullable=True)
 
-    def __init__(self, phone_num, name, sex, age, address):
+    def __init__(self, phone_num, name=None, sex=None, age=None, address=None):
         self.phone_num = phone_num
         self.name = name
         self.sex = sex
