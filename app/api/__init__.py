@@ -5,4 +5,4 @@ api_blueprint = Blueprint('api', __name__)
 api = Api(api_blueprint)
 
 
-from . import views, newspapers, users, records
+from . import views, newspapers, users, records, subscriptions

@@ -1,9 +1,9 @@
 # -*-coding:utf8 -*-
 from flask import request, jsonify
 from flask_restful import Resource, reqparse
+from . import api
 from .. import db
 from ..models import Record, User, Newspaper
-from . import api
 
 parser = reqparse.RequestParser()
 parser.add_argument('name', type=unicode, required=True)

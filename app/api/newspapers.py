@@ -1,9 +1,9 @@
 # -*-coding:utf8 -*-
 from flask import jsonify
 from flask_restful import Resource, reqparse
+from . import api
 from .. import db
 from ..models import Newspaper
-from . import api
 
 parser = reqparse.RequestParser()
 parser.add_argument('jou_id', type=int, required=True)
