@@ -2,18 +2,18 @@ USE newspaper;
 
 -- newspaper demo data
 INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
-    VALUES (141, 6, '人民日报', '2014-01-01');
+    VALUES (1, 1, '人民日报', '1998-01-01');
 INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
-    VALUES (2787, 17, '光明日报', '2017-01-01');
+    VALUES (1, 1, '光明日报', '2001-01-01');
 INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
-    VALUES (387, 9, '人民日报', '2014-08-01');
+    VALUES (2, 2, '人民日报', '2014-08-01');
 INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
-    VALUES (2214, 56, '英语周报', '2000-08-01');
+    VALUES (2, 2, '光明日报', '2000-08-01');
 INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
-    VALUES (157, 12, '华尔街日报', '2013-01-08');
+    VALUES (1, 1, '华尔街日报', '2013-01-08');
 
 -- user demo data
-INSERT INTO usesr(phone_num, name, sex, age, address)
+INSERT INTO users(phone_num, name, sex, age, address)
     VALUES (13845924571, '刘二', 1, 18, '华尔街');
 INSERT INTO users(phone_num, name, sex, age, address)
     VALUES (13789211278, '杜三', 1, 45, '哈尔滨');
@@ -41,3 +41,13 @@ INSERT INTO records(news_id, user_id, station)
     VALUES (1, 4, '新乡');
 INSERT INTO records(news_id, user_id, station)
     VALUES (3, 4, '北京');
+
+-- subscription demo data
+INSERT INTO subscriptions(news_id, user_id)
+    VALUES (1, 1);
+INSERT INTO subscriptions(news_id, user_id)
+    VALUES (1, 2);
+INSERT INTO subscriptions(news_id, user_id)
+    VALUES (3, 3);
+INSERT INTO subscriptions(news_id, user_id)
+    VALUES (2, 4);
