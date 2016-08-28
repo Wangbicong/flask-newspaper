@@ -61,20 +61,24 @@ class Record(db.Model):
                         db.ForeignKey('newspapers.id'))
     user_id = db.Column(db.Integer,
                           db.ForeignKey('users.id'))
-    station = db.Column(db.String(40), nullable=False)
+    station = db.Column(db.String(40), nullable=True)
+    date = db.Column(db.Date, nullable=True)
 
-    def __init__(self, news_id, user_id, station):
+    def __init__(self, news_id, user_id, station, date):
         self.news_id = news_id
         self.user_id = user_id
         self.station = station
+        self.date = date
 
     def __repr__(self):
+        # datetime需要格式化为字符串形式
         dict = {}
-        dict.update(self.__dict__)
-        for key in dict.keys():
-            if key[0] == '_':
-                del dict[key]
-        return str(dict)
+        dict['news_id'] = int(self.__dict__['news_id'])
+        dict['user_id'] = int(self.__dict__['user_id'])
+        dict['station'] = (self.__dict__['station'])
+        dict['date'] = str(self.__dict__['date'].year) + '-' + \
+                           str(self.__dict__['date'].month) + '-' + str(self.__dict__['date'].day)
+        return json.dumps(dict)
 
 
 class Subscription(db.Model):

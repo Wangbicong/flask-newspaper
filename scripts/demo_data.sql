@@ -25,22 +25,22 @@ INSERT INTO users(phone_num, name, sex, age, address)
     VALUES (12579014579, '杜子疼', 1, 16, '不想说');
 
 -- record demo data
-INSERT INTO records(news_id, user_id, station)
-    VALUES (1, 1, '哈尔滨');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (1, 2, '七天');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (2, 3, '华盛顿');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (1, 5, '杜圣哲家');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (2, 1, '四平');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (4, 2, '哈尔滨');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (1, 4, '新乡');
-INSERT INTO records(news_id, user_id, station)
-    VALUES (3, 4, '北京');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (1, 1, '哈尔滨', '2016-08-20');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (1, 2, '七天', '2016-08-20');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (2, 3, '华盛顿', '2016-07-07');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (1, 5, '杜圣哲家', '2016-02-04');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (2, 1, '四平', '2016-07-08');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (4, 2, '哈尔滨', '2016-08-02');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (1, 4, '新乡', '2016-02-20');
+INSERT INTO records(news_id, user_id, station, date)
+    VALUES (3, 4, '北京', '2016-06-20');
 
 -- subscription demo data
 INSERT INTO subscriptions(news_id, user_id)

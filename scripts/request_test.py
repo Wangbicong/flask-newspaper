@@ -32,3 +32,4 @@ def record_test():
 
 if __name__ == '__main__':
     user_test()
+    record_test()
