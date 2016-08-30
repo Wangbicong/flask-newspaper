@@ -15,7 +15,10 @@ parser.add_argument('phone_num', type=int, required=True)
 
 class UsersAPI(Resource):
     def get(self):
-        return jsonify(eval(str(User.query.all())))
+        users = []
+        for user in User.query.all():
+            users.append(user.to_json())
+        return jsonify(users)
 
     def put(self):
         args = parser.parse_args()

@@ -3,6 +3,7 @@ from flask import request, jsonify
 from flask_restful import Resource, reqparse
 from . import api
 from .. import db
+from ..parse import date_parse
 from ..models import Record, User, Newspaper
 import datetime
 
@@ -14,7 +15,10 @@ parser.add_argument('jou_id', type=int, required=True)
 
 class RecordsAPI(Resource):
     def get(self):
-        return str(Record.query.all())
+        records = []
+        for record in Record.query.all():
+            records.append(record.to_json())
+        return jsonify(records)
 
 
 class RecordAPI(Resource):
@@ -24,9 +28,9 @@ class RecordAPI(Resource):
         news_id = Newspaper.query.filter_by(name=request.args.get('name'),
                                             jou_id=request.args.get('jou_id')).first().id
         record = Record.query.filter_by(user_id=user_id, news_id=news_id).first()
-        if bool(record):
-            date = str(record.date.year) + '-' + \
-                           str(record.date.month) + '-' + str(record.date.day)
+
+        if record:
+            date = date_parse(record.date)
             return jsonify(receive_state=bool(record), news_num=len(Record.query.filter_by(user_id=user_id).all()),
                        date=date, station=record.station)
         else:

@@ -14,17 +14,16 @@ parser.add_argument('pub_date', type=str, required=True)
 
 class NewspapersAPI(Resource):
     def get(self):
-        return jsonify(eval(str(Newspaper.query.all())))
-
-    def post(self):
-        return 'post'
+        newspapers = []
+        for news in Newspaper.query.all():
+            newspapers.append(news.to_json())
+        return jsonify(newspapers)
 
     def put(self):
         args = parser.parse_args()
         news = Newspaper(**args)
         db.session.add(news)
         return 200
-        # db.session.commit()
 
     def delete(self):
         return 'delete'

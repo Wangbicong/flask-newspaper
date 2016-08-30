@@ -1,6 +1,7 @@
 # -*-coding:utf8 -*-
 import json
 from app import db
+from parse import date_parse
 
 
 class Newspaper(db.Model):
@@ -23,9 +24,16 @@ class Newspaper(db.Model):
         dict['jou_id'] = int(self.__dict__['jou_id'])
         dict['sub_jou_id'] = int(self.__dict__['sub_jou_id'])
         dict['name'] = (self.__dict__['name'])
-        dict['pub_date'] = str(self.__dict__['pub_date'].year) + '-' + \
-                           str(self.__dict__['pub_date'].month) + '-' + str(self.__dict__['pub_date'].day)
+        dict['pub_date'] = date_parse(self.__dict__['pub_date'])
         return json.dumps(dict)
+
+    def to_json(self):
+        return {
+            'jou_id': self.__dict__['jou_id'],
+            'sub_jou_id': self.__dict__['sub_jou_id'],
+            'name': self.__dict__['name'],
+            'pub_date': date_parse(self.__dict__['pub_date'])
+        }
 
 
 class User(db.Model):
@@ -53,6 +61,15 @@ class User(db.Model):
         dict['address'] = (self.__dict__['address'])
         return json.dumps(dict)
 
+    def to_json(self):
+        return{
+            'phone_num': self.__dict__['phone_num'],
+            'name': self.__dict__['name'],
+            'sex': self.__dict__['sex'],
+            'age': self.__dict__['age'],
+            'address': self.__dict__['address']
+        }
+
 
 class Record(db.Model):
     __tablename__ = 'records'
@@ -64,7 +81,7 @@ class Record(db.Model):
     station = db.Column(db.String(40), nullable=True)
     date = db.Column(db.Date, nullable=True)
 
-    def __init__(self, news_id, user_id, station, date):
+    def __init__(self, news_id, user_id, station=None, date=None):
         self.news_id = news_id
         self.user_id = user_id
         self.station = station
@@ -76,9 +93,16 @@ class Record(db.Model):
         dict['news_id'] = int(self.__dict__['news_id'])
         dict['user_id'] = int(self.__dict__['user_id'])
         dict['station'] = (self.__dict__['station'])
-        dict['date'] = str(self.__dict__['date'].year) + '-' + \
-                           str(self.__dict__['date'].month) + '-' + str(self.__dict__['date'].day)
+        dict['date'] = date_parse(self.__dict__['date'])
         return json.dumps(dict)
+
+    def to_json(self):
+        return {
+            'news_id': self.__dict__['news_id'],
+            'user_id': self.__dict__['user_id'],
+            'station': self.__dict__['station'],
+            'date': date_parse(self.__dict__['date'])
+        }
 
 
 class Subscription(db.Model):
