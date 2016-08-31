@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>广播电视报管理</title>
+
+	<link rel="stylesheet" href="assets/lib/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+
+</head>
+<body>
+
+<!-- 页面头部，应有介绍、名称和退出按钮？ -->
+<header class="header" id="header">
+    <img src="assets/img/logo.png" alt="logo">
+    <span>广播电视报管理</span>
+</header>
+
+
+<!-- tab标签栏：报纸信息，用户信息，订阅信息 -->
+<!-- 每个标签包含一个页面 -->
+<!-- 应该换成两个tab，订阅信息由选中报纸或用户后切换到 -->
+<div id="myTab">
+	<ul class="nav nav-tabs" role="tablist">
+	  	<li class="active"><a href="#newspaper" role="tab" data-toggle="tab">报纸信息</a></li>
+		<li><a href="#user" role="tab" data-toggle="tab">用户信息</a></li>
+	</ul>
+</div>
+
+
+<div id="content" class="tab-content">
+  
+    <div class="tab-pane active" id="newspaper">
+  	    <div>
+  	    	<div id="newspaperButtons">
+  	    		<button type="button" class="btn btn-primary">导出表格</button>
+				<button type="button" class="btn btn-primary">添加报纸</button>
+				<button type="button" class="btn btn-primary">删除报纸</button>
+				<button type="button" class="btn btn-primary">修改报纸信息</button>
+				<button type="button" class="btn btn-primary">生成二维码</button>
+				<button type="button" class="btn btn-primary">查看当期领取人</button>
+			</div>
+
+			<div id="newspaperTable">
+				<div id="newspaperSearch">
+					报纸名称：<input type="text" name="newspapername">
+					总期数：<input type="text" name="newspaperid">
+					<button class="btn">搜索</button>
+				</div>
+				<table class="table table-hover table-striped table-bordered">
+  					<thead class="thead-default">
+    					<tr>
+      						<th>报纸名称</th>
+      						<th>总期数</th>
+      						<th>期数</th>
+      						<th>发行日期</th>
+		    			</tr>
+		  			</thead>
+		  			<tbody>
+		    			<tr>
+		      				<td>唐山报</td>
+		      				<td>1</td>
+		      				<td>1</td>
+		      				<td>2014-01-01</td>
+		    			</tr>
+		  			</tbody>
+				</table>
+			</div><!-- newspapertable end -->
+
+		</div>
+    </div>
+	
+	<div class="tab-pane" id="user">
+		<div>
+  	    	<div id="userButtons">
+  	    		<button type="button" class="btn btn-primary">导出表格</button>
+				<button type="button" class="btn btn-primary">添加用户</button>
+				<button type="button" class="btn btn-primary">删除用户</button>
+				<button type="button" class="btn btn-primary">修改用户信息</button>
+				<button type="button" class="btn btn-primary">查看订阅历史</button>
+			</div>
+
+			<div id="userTable">
+				<div id="userSearch">
+					手机号：<input type="text" name="userid">
+					<button class="btn">搜索</button>
+				</div>
+				<table class="table table-hover table-striped table-bordered">
+  					<thead class="thead-default">
+    					<tr>
+      						<th>姓名</th>
+      						<th>手机号</th>
+      						<th>住址</th>
+      						<th>11</th>
+		    			</tr>
+		  			</thead>
+		  			<tbody>
+		    			<tr>
+		      				<td>111</td>
+		      				<td>11111111111</td>
+		      				<td>11111</td>
+		      				<td>11</td>
+		    			</tr>
+		  			</tbody>
+				</table>
+			</div><!-- usertable end -->
+
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="assets/lib/jquery-2.0.2.min.js"></script>
+
+<script src="assets/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

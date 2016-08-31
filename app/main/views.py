@@ -6,4 +6,4 @@ from .forms import NameForm
 @main_blueprint.route('/', methods=['get', 'post'])
 def index():
 
-    return render_template('main.html')
+    return render_template('index.html')

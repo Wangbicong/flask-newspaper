@@ -32,7 +32,7 @@ class Newspaper(db.Model):
             'jou_id': self.__dict__['jou_id'],
             'sub_jou_id': self.__dict__['sub_jou_id'],
             'name': self.__dict__['name'],
-            'pub_date': date_parse(self.__dict__['pub_date'])
+            'pub_date': str(self.__dict__['pub_date'])
         }
 
 
@@ -79,7 +79,7 @@ class Record(db.Model):
     user_id = db.Column(db.Integer,
                           db.ForeignKey('users.id'))
     station = db.Column(db.String(40), nullable=True)
-    date = db.Column(db.Date, nullable=True)
+    date = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, news_id, user_id, station=None, date=None):
         self.news_id = news_id

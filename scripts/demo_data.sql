@@ -26,7 +26,7 @@ INSERT INTO users(phone_num, name, sex, age, address)
 
 -- record demo data
 INSERT INTO records(news_id, user_id, station, date)
-    VALUES (1, 1, '哈尔滨', '2016-08-20');
+    VALUES (1, 1, '哈尔滨', '2016-08-20 09:05:23');
 INSERT INTO records(news_id, user_id, station, date)
     VALUES (1, 2, '七天', '2016-08-20');
 INSERT INTO records(news_id, user_id, station, date)
