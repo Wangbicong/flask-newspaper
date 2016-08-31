@@ -5,7 +5,7 @@ from . import api
 from .. import db
 from ..parse import date_parse
 from ..models import Record, User, Newspaper
-import datetime
+import time
 
 parser = reqparse.RequestParser()
 parser.add_argument('name', type=unicode, required=True)
@@ -42,7 +42,7 @@ class RecordAPI(Resource):
         user_id = User.query.filter_by(phone_num=id).first().id
         news_id = Newspaper.query.filter_by(name=args['name'],
                                             jou_id=args['jou_id']).first().id
-        date = str(datetime.date.today())
+        date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         record = Record(user_id=user_id, news_id=news_id, station=args['station'], date=date)
         db.session.add(record)
 
