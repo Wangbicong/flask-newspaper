@@ -42,29 +42,29 @@
     <div class="tab-pane active" id="newspaper">
   	    <div>
   	    	<div id="newspaperButtons">
-  	    		<button type="button" class="btn btn-primary">导出表格</button>
+  	    		<button type="button" class="btn btn-primary" onclick="window.location.href='csv/newspaper.csv'">导出表格</button>
 				<button type="button" class="btn btn-primary" onclick="add_newspaper()">添加报纸</button>
 				<button type="button" class="btn btn-primary">删除报纸</button>
-				<button type="button" class="btn btn-primary">修改报纸信息</button>
-					<button type="button" class="btn btn-primary">生成二维码</button>
+                <button type="button" class="btn btn-primary">生成二维码</button>
 				<button type="button" class="btn btn-primary">查看当期领取人</button>
 			</div>
 
 			<div id="newspaperTable">
-				<form class="form-inline" role="form" action="/" method="get">
-					<div class="form-group">
-						<label for="news_name">报纸名称：</label>
-						<input type="text" class="form-control" id="news_name" name="news_name">
-					</div>
-					<div class="form-group">
-						<label for="jou_id">总期数：</label>
-						<input type="text" class="form-control" id="jou_id" name="jou_id">
-					</div>
-					<button type="submit" class="btn btn-default">搜索</button>
-				</form>
+                    <form class="form-inline" role="form" action="/" method="get">
+                        <div class="form-group">
+                            <label for="news_name">报纸名称：</label>
+                            <input type="text" class="form-control" id="news_name" name="news_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="jou_id">总期数：</label>
+                            <input type="text" class="form-control" id="jou_id" name="jou_id">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
 				<table id='newsTable' class="table table-hover table-striped table-bordered">
   					<thead class="thead-default">
     					<tr>
+                            <th>编号</th>
       						<th>报纸名称</th>
       						<th>总期数</th>
       						<th>期数</th>
@@ -73,7 +73,8 @@
 		  			</thead>
 		  			<tbody>
                     {% for news in news_data %}
-		    			<tr id="{{ news.id }}">
+		    			<tr>
+                            <td>{{ news.id }}</td>
 		      				<td>{{ news.name }}</td>
 		      				<td>{{ news.jou_id }}</td>
 		      			    <td>{{ news.sub_jou_id }}</td>
@@ -90,10 +91,9 @@
 	<div class="tab-pane" id="user">
 		<div>
   	    	<div id="userButtons">
-  	    		<button type="button" class="btn btn-primary">导出表格</button>
-				<button type="button" class="btn btn-primary">添加用户</button>
+  	    		<button type="button" class="btn btn-primary" onclick="window.location.href='csv/user.csv'">导出表格</button>
+				<button type="button" class="btn btn-primary" onclick="add_user()">添加用户</button>
 				<button type="button" class="btn btn-primary">删除用户</button>
-				<button type="button" class="btn btn-primary">修改用户信息</button>
 				<button type="button" class="btn btn-primary">查看订阅历史</button>
 			</div>
 
@@ -108,6 +108,7 @@
 				<table class="table table-hover table-striped table-bordered">
   					<thead class="thead-default">
     					<tr>
+                            <th>编号</th>
       						<th>姓名</th>
       						<th>手机号</th>
       						<th>年龄</th>
@@ -118,6 +119,7 @@
 		  			<tbody>
                     {% for user in user_data %}
 		    			<tr>
+                            <td>{{ user.id }}</td>
 		      				<td>{{ user.name }}</td>
 		      				<td>{{ user.phone_num }}</td>
 		      			    <td>{{ user.age }}</td>
@@ -140,7 +142,7 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
 
-<script type="text/javascript" src="../static/js/init.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
 
 </body>
 </html>

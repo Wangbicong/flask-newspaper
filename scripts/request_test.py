@@ -22,6 +22,14 @@ def user_test():
     }
     print put('http://%s/api/user/' % host, data=data)
 
+    date = {
+        'phone_num': '1234545454',
+        'sex': None,
+        'age': None,
+        'name': None,
+        'address': None
+    }
+    print post('http://%s/user/' % host, data=data)
 
 def record_test():
     print get('http://%s/api/record/13782472197/?name=人民日报&jou_id=1' % host).content

@@ -1,5 +1,5 @@
 # -*-coding:utf8 -*-
-from flask import jsonify
+from flask import jsonify, redirect
 from flask_restful import Resource, reqparse
 from . import api
 from .. import db

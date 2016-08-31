@@ -1,7 +1,7 @@
 # -*-coding:utf8 -*-
 import json
 from app import db
-from parse import date_parse
+from parse import date_parse, sex_parse
 
 
 class Newspaper(db.Model):
@@ -23,6 +23,7 @@ class Newspaper(db.Model):
 
     def to_json(self):
         return {
+            'id': self.__dict__['id'],
             'jou_id': self.__dict__['jou_id'],
             'sub_jou_id': self.__dict__['sub_jou_id'],
             'name': self.__dict__['name'],
@@ -51,9 +52,10 @@ class User(db.Model):
 
     def to_json(self):
         return{
+            'id': self.__dict__['id'],
             'phone_num': self.__dict__['phone_num'],
             'name': self.__dict__['name'],
-            'sex': self.__dict__['sex'],
+            'sex': sex_parse(self.__dict__['sex'], True),
             'age': self.__dict__['age'],
             'address': self.__dict__['address']
         }

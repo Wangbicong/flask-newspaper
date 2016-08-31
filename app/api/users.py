@@ -2,7 +2,6 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
 from ..models import User
-from ..qr_code import create_qrcode
 from .. import db
 from . import api
 
