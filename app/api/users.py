@@ -31,7 +31,6 @@ class UsersAPI(Resource):
 class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
-        create_qrcode(User.query.filter_by(phone_num=id).first())
         return jsonify(login_state=bool(User.query.filter_by(phone_num=id).first()))
 
 

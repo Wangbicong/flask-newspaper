@@ -19,13 +19,7 @@ class Newspaper(db.Model):
         self.pub_date = pub_date
 
     def __repr__(self):
-        # datetime需要格式化为字符串形式
-        dict = {}
-        dict['jou_id'] = int(self.__dict__['jou_id'])
-        dict['sub_jou_id'] = int(self.__dict__['sub_jou_id'])
-        dict['name'] = (self.__dict__['name'])
-        dict['pub_date'] = date_parse(self.__dict__['pub_date'])
-        return json.dumps(dict)
+        return json.dumps(self.to_json())
 
     def to_json(self):
         return {
@@ -53,13 +47,7 @@ class User(db.Model):
         self.address = address
 
     def __repr__(self):
-        dict = {}
-        dict['phone_num'] = str(self.__dict__['phone_num'])
-        dict['name'] = (self.__dict__['name'])
-        dict['sex'] = int(self.__dict__['sex'])
-        dict['age'] = int(self.__dict__['age'])
-        dict['address'] = (self.__dict__['address'])
-        return json.dumps(dict)
+        return json.dumps(self.to_json())
 
     def to_json(self):
         return{
@@ -78,7 +66,7 @@ class Record(db.Model):
                         db.ForeignKey('newspapers.id'))
     user_id = db.Column(db.Integer,
                           db.ForeignKey('users.id'))
-    station = db.Column(db.String(40), nullable=True)
+    station = db.Column(db.String(100), nullable=True)
     date = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, news_id, user_id, station=None, date=None):
@@ -88,13 +76,7 @@ class Record(db.Model):
         self.date = date
 
     def __repr__(self):
-        # datetime需要格式化为字符串形式
-        dict = {}
-        dict['news_id'] = int(self.__dict__['news_id'])
-        dict['user_id'] = int(self.__dict__['user_id'])
-        dict['station'] = (self.__dict__['station'])
-        dict['date'] = date_parse(self.__dict__['date'])
-        return json.dumps(dict)
+        return json.dumps(self.to_json())
 
     def to_json(self):
         return {
