@@ -2,6 +2,7 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
 from ..models import User
+from ..qr_code import create_qrcode
 from .. import db
 from . import api
 
@@ -30,6 +31,7 @@ class UsersAPI(Resource):
 class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
+        create_qrcode(User.query.filter_by(phone_num=id).first())
         return jsonify(login_state=bool(User.query.filter_by(phone_num=id).first()))
 
 
