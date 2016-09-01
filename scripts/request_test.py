@@ -1,8 +1,8 @@
 # -*- coding:utf8 -*-
 from requests import get, post, put, delete
 
-host = 'localhost:5000'
-# host = '123.56.41.206'
+# host = 'localhost:5000'
+host = '123.56.41.206'
 #
 # data = {
 #     'jou_id': 154,
@@ -31,7 +31,7 @@ def user_test():
     }
     print post('http://%s/user/' % host, data=data)
 
-    print delete('http://127.0.0.1:5000/newspaper/1/').content
+    # print delete('http://127.0.0.1:5000/newspaper/1/').content
 
 def record_test():
     print get('http://%s/api/record/13782472197/?name=人民日报&jou_id=1' % host).content
