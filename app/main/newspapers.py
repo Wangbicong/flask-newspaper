@@ -4,6 +4,7 @@ from flask_restful import Resource, reqparse
 from . import api
 from .. import db
 from ..models import Newspaper
+from requests import get
 
 parser = reqparse.RequestParser()
 parser.add_argument('jou_id', type=str, required=True)
@@ -34,14 +35,10 @@ class NewspaperAPI(Resource):
         return 'get'
         # return str(Newspaper.query.filter_by(jou_id=id).first())
 
-    def post(self):
-        return 'post'
-
-    def put(self):
-        return 'put'
-
-    def delete(self):
-        return 'delete'
+    def delete(self, id):
+        news = Newspaper.query.filter_by(id=id).first()
+        db.session.delete(news)
+        return redirect('/', code=200)
 
 api.add_resource(NewspapersAPI, '/newspaper/')
-api.add_resource(NewspaperAPI, '/newspaper/<int:id>/')
+api.add_resource(NewspaperAPI, '/newspaper/<id>/')

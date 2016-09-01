@@ -32,6 +32,9 @@ class UserAPI(Resource):
     def get(self, id):
         return jsonify(login_state=bool(User.query.filter_by(phone_num=id).first()))
 
+    def delete(self, id):
+        pass
+
 
 api.add_resource(UsersAPI, '/user/')
 api.add_resource(UserAPI, '/user/<int:id>/')

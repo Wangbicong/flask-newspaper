@@ -1,5 +1,9 @@
 var NEWS_ID = 0;
 var USER_ID = 0;
+var LAST_NEWS_ITEM=Object();
+LAST_NEWS_ITEM.style=Object();
+var LAST_USER_ITEM=Object();
+LAST_USER_ITEM.style=Object();
 
 
 function add_newspaper() {
@@ -91,3 +95,28 @@ function add_user() {
             }
         })
 }
+
+function del_newspaper() {
+    if(NEWS_ID){
+        $.ajax({
+            url: '/newspaper/' + NEWS_ID +'/',
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+            }
+        });
+    }
+}
+
+function del_user() {
+    if(USER_ID){
+        $.ajax({
+            url: '/user/' + USER_ID +'/',
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+            }
+        });
+    }
+}
+

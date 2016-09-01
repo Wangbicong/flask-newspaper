@@ -9,6 +9,10 @@ def index():
     news_name = request.args.get('news_name')
     jou_id = request.args.get('jou_id')
 
+    news_id = request.args.get('news_id')
+    user_id = request.args.get('user_id')
+
+
     user_data = []
     if phone_num:
         for user in User.query.filter_by(phone_num=phone_num).all():
