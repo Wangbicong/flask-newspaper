@@ -40,7 +40,7 @@ class UserAPI(Resource):
     def delete(self, id):
         user = User.query.filter_by(id=id).first()
         db.session.delete(user)
-        return redirect('/', code=200)
+        return jsonify({'status':200})
 
 
 api.add_resource(UsersAPI, '/user/')

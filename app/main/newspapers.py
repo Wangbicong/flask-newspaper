@@ -38,7 +38,7 @@ class NewspaperAPI(Resource):
     def delete(self, id):
         news = Newspaper.query.filter_by(id=id).first()
         db.session.delete(news)
-        return redirect('/', code=200)
+        return jsonify({'status': 200})
 
 api.add_resource(NewspapersAPI, '/newspaper/')
 api.add_resource(NewspaperAPI, '/newspaper/<id>/')
