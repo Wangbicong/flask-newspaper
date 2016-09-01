@@ -36,7 +36,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     phone_num = db.Column(db.String(11), nullable=False)
     name = db.Column(db.String(4), nullable=True)
-    sex = db.Column(db.Boolean, nullable=True)
+    sex = db.Column(db.String(2), nullable=True)
     age = db.Column(db.Integer, nullable=True)
     address = db.Column(db.String(40), nullable=True)
 
@@ -55,7 +55,7 @@ class User(db.Model):
             'id': self.__dict__['id'],
             'phone_num': self.__dict__['phone_num'],
             'name': self.__dict__['name'],
-            'sex': sex_parse(self.__dict__['sex'], True),
+            'sex': self.__dict__['sex'],
             'age': self.__dict__['age'],
             'address': self.__dict__['address']
         }
@@ -64,10 +64,8 @@ class User(db.Model):
 class Record(db.Model):
     __tablename__ = 'records'
     id = db.Column(db.Integer, primary_key=True)
-    news_id = db.Column(db.Integer,
-                        db.ForeignKey('newspapers.id'))
-    user_id = db.Column(db.Integer,
-                          db.ForeignKey('users.id'))
+    news_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     station = db.Column(db.String(100), nullable=True)
     date = db.Column(db.DateTime, nullable=True)
 
@@ -92,10 +90,8 @@ class Record(db.Model):
 class Subscription(db.Model):
     __tablename__ = 'subscriptions'
     id = db.Column(db.Integer, primary_key=True)
-    news_id = db.Column(db.Integer,
-                        db.ForeignKey('newspapers.id'))
-    user_id = db.Column(db.Integer,
-                          db.ForeignKey('users.id'))
+    news_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
 
     def __init__(self, news_id, user_id, station):
         self.news_id = news_id

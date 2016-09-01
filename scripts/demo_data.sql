@@ -14,15 +14,15 @@ INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
 
 -- user demo data
 INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (13845924571, '刘二', 1, 18, '华尔街');
+    VALUES (13845924571, '刘二', '男', 18, '华尔街');
 INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (13789211278, '杜三', 1, 45, '哈尔滨');
+    VALUES (13789211278, '杜三', '女', 45, '哈尔滨');
 INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (18245782014, '杜圣哲', 0, 88, '哈工大一区五公寓');
+    VALUES (18245782014, '杜圣哲', '男', 88, '哈工大一区五公寓');
 INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (14577824571, '杜笑着', 0, 72, '不详');
+    VALUES (14577824571, '杜笑着', '女', 72, '不详');
 INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (12579014579, '杜子疼', 1, 16, '不想说');
+    VALUES (12579014579, '杜子疼', '男', 16, '不想说');
 
 -- record demo data
 INSERT INTO records(news_id, user_id, station, date)

@@ -42,3 +42,4 @@ class NewspaperAPI(Resource):
 
 api.add_resource(NewspapersAPI, '/newspaper/')
 api.add_resource(NewspaperAPI, '/newspaper/<id>/')
+

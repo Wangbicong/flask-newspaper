@@ -102,6 +102,7 @@ function del_newspaper() {
             url: '/newspaper/' + NEWS_ID +'/',
             type: 'DELETE',
             success: function(result) {
+                window.location.reload();
                 // Do something with the result
             }
         });
@@ -114,6 +115,7 @@ function del_user() {
             url: '/user/' + USER_ID +'/',
             type: 'DELETE',
             success: function(result) {
+                window.location.reload();
                 // Do something with the result
             }
         });

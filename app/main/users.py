@@ -4,11 +4,12 @@ from flask_restful import Resource, reqparse
 from ..models import User
 from .. import db
 from . import api
+from .. parse import sex_parse
 
 parser = reqparse.RequestParser()
 parser.add_argument('phone_num', type=str, required=True)
 parser.add_argument('name', type=unicode, required=False)
-parser.add_argument('sex', type=str, required=False)
+parser.add_argument('sex', type=unicode, required=False)
 parser.add_argument('age', type=str, required=False)
 parser.add_argument('address', type=unicode, required=False)
 

@@ -17,6 +17,9 @@ def index():
     if phone_num:
         for user in User.query.filter_by(phone_num=phone_num).all():
             user_data.append(user.to_json())
+    elif news_id:
+        for record in Record.query.filter_by(news_id=news_id).all():
+            user_data.append(User.query.filter_by(id=record.user_id).first())
     else:
         for user in User.query.all():
             user_data.append(user.to_json())
@@ -32,6 +35,9 @@ def index():
     elif jou_id:
         for news in Newspaper.query.filter_by(jou_id=jou_id).all():
             news_data.append(news.to_json())
+    elif user_id:
+        for record in Record.query.filter_by(user_id=user_id).all():
+            news_data.append(Newspaper.query.filter_by(id=record.news_id).first())
     else:
         for news in Newspaper.query.all():
             news_data.append(news.to_json())
