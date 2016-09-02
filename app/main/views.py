@@ -15,6 +15,7 @@ parser = reqparse.RequestParser()
 parser.add_argument('username', type=str, required=True)
 parser.add_argument('password', type=str, required=True)
 
+
 @main_blueprint.route('/', methods=['get'])
 def index():
     if session.get('login', None) == LOGIN:
@@ -31,8 +32,17 @@ def index():
             for user in User.query.filter_by(phone_num=phone_num).all():
                 user_data.append(user.to_json())
         elif news_id:
+            record_data=[]
             for record in Record.query.filter_by(news_id=news_id).all():
-                user_data.append(User.query.filter_by(id=record.user_id).first())
+                user = User.query.filter_by(id=record.user_id).first()
+                record_data.append({
+                    'id': record.id,
+                    'name': user.name,
+                    'phone_num': user.phone_num,
+                    'station': record.station,
+                    'date': record.date
+                })
+            return render_template('record.html', record_data=record_data)
         else:
             for user in User.query.all():
                 user_data.append(user.to_json())
@@ -51,6 +61,7 @@ def index():
         elif user_id:
             for record in Record.query.filter_by(user_id=user_id).all():
                 news_data.append(Newspaper.query.filter_by(id=record.news_id).first())
+            return render_template('news.html', news_data=news_data)
         else:
             for news in Newspaper.query.all():
                 news_data.append(news.to_json())
@@ -73,17 +84,6 @@ def login():
 
         session['login'] = LOGIN
         return redirect('/')
-# class LoginAPI(Resource):
-#     def get(self):
-#         return render_template('index.html', news_data=[],
-#                                user_data=[])
-#
-#     def post(self):
-#         args = parser.parse_args()
-#         print args
-#         return redirect('/')
-#
-# api.add_resource(LoginAPI, '/login/')
 
 
 

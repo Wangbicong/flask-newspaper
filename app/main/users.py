@@ -1,7 +1,7 @@
 # -*- coding:utf8 -*-
 from flask import jsonify, redirect, request
 from flask_restful import Resource, reqparse
-from ..models import User
+from ..models import User, Record
 from .. import db
 from . import api
 from .. parse import sex_parse
@@ -41,6 +41,8 @@ class UserAPI(Resource):
     def delete(self, id):
         user = User.query.filter_by(id=id).first()
         db.session.delete(user)
+        for record in Record.query.filter_by(user_id=id).all():
+            db.session.delete(record)
         return jsonify({'status':200})
 
 

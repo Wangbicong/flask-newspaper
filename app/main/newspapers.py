@@ -3,7 +3,7 @@ from flask import jsonify, redirect
 from flask_restful import Resource, reqparse
 from . import api
 from .. import db
-from ..models import Newspaper
+from ..models import Newspaper, Record
 from requests import get
 
 parser = reqparse.RequestParser()
@@ -38,6 +38,8 @@ class NewspaperAPI(Resource):
     def delete(self, id):
         news = Newspaper.query.filter_by(id=id).first()
         db.session.delete(news)
+        for record in Record.query.filter_by(news_id=id).all():
+            db.session.delete(record)
         return jsonify({'status': 200})
 
 api.add_resource(NewspapersAPI, '/newspaper/')
