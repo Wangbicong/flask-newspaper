@@ -1,7 +1,7 @@
 # -*-coding:utf8 -*-
 import json
 from app import db
-from parse import date_parse, sex_parse
+from parse import date_parse
 
 
 class Newspaper(db.Model):
@@ -34,18 +34,20 @@ class Newspaper(db.Model):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    phone_num = db.Column(db.String(11), nullable=False)
+    phone_num = db.Column(db.String(20), nullable=False)
     name = db.Column(db.String(4), nullable=True)
     sex = db.Column(db.String(2), nullable=True)
     age = db.Column(db.Integer, nullable=True)
-    address = db.Column(db.String(40), nullable=True)
+    address = db.Column(db.String(100), nullable=True)
+    status = db.Column(db.String(30), nullable=True)
 
-    def __init__(self, phone_num, name=None, sex=None, age=None, address=None):
+    def __init__(self, phone_num, name=None, sex=None, age=None, address=None, status=None):
         self.phone_num = phone_num
         self.name = name
         self.sex = sex
         self.age = age
         self.address = address
+        self.status = status
 
     def __repr__(self):
         return json.dumps(self.to_json())
@@ -57,7 +59,8 @@ class User(db.Model):
             'name': self.__dict__['name'],
             'sex': self.__dict__['sex'],
             'age': self.__dict__['age'],
-            'address': self.__dict__['address']
+            'address': self.__dict__['address'],
+            'status': self.__dict__['status']
         }
 
 

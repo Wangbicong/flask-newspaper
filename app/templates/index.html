@@ -47,7 +47,7 @@
   	    		<button type="button" class="btn btn-primary" onclick="window.location.href='csv/newspaper.csv'">导出表格</button>
 				<button type="button" class="btn btn-primary" onclick="add_newspaper()">添加报纸</button>
 				<button type="button" class="btn btn-primary" onclick="del_newspaper();">删除报纸</button>
-                <button type="button" class="btn btn-primary" onclick="if(NEWS_ID){window.location.href='qrcode/'+NEWS_ID}">生成二维码</button>
+                <button type="button" class="btn btn-primary" onclick="show_qrcode();">生成二维码</button>
 				<button type="button" class="btn btn-primary" onclick="if(NEWS_ID){window.location.href='?news_id='+NEWS_ID;}">查看当期领取人</button>
 			</div>
 
@@ -97,6 +97,7 @@
 		<div>
   	    	<div id="userButtons">
   	    		<button type="button" class="btn btn-primary" onclick="window.location.href='csv/user.csv'">导出表格</button>
+				<button type="button" class="btn btn-primary" onclick="import_user()">导入表格</button>
 				<button type="button" class="btn btn-primary" onclick="add_user()">添加用户</button>
 				<button type="button" class="btn btn-primary" onclick="del_user()">删除用户</button>
 				<button type="button" class="btn btn-primary" onclick="if(USER_ID){window.location.href='?user_id='+USER_ID;}">查看订阅历史</button>
@@ -119,6 +120,7 @@
       						<th>年龄</th>
       						<th>性别</th>
                             <th>住址</th>
+							<th>核实结果</th>
 		    			</tr>
 		  			</thead>
 		  			<tbody>
@@ -133,6 +135,7 @@
 		      			    <td>{{ user.age }}</td>
 		      				<td>{{ user.sex }}</td>
 		      				<td>{{ user.address }}</td>
+							<td>{{ user.status }}</td>
 		    			</tr>
                     {% endfor %}
 		  			</tbody>

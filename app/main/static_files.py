@@ -1,10 +1,10 @@
 # -*-coding:utf8 -*-
-from flask import redirect, url_for, send_from_directory, abort
+from flask import redirect, request, send_from_directory, abort
 from flask_restful import Resource
 from . import api
 from ..qr_code import create_qrcode
 from ..models import Newspaper
-from ..m_csv import create_news, create_user
+from ..op_excel import output_news, output_user, import_user
 
 
 class QrCodesAPI(Resource):
@@ -14,14 +14,23 @@ class QrCodesAPI(Resource):
 
 
 class CsvAPI(Resource):
+    def post(self):
+        f = request.files['file']
+        f.save('app/temp/readers.xlsx')
+        import_user()
+        return redirect('/')
+
+
+class CsvsAPI(Resource):
     def get(self, tag):
         if tag == 'newspaper.csv':
-            create_news()
+            output_news()
         elif tag == 'user.csv':
-            create_user()
+            output_user()
         else:
             abort(404)
         return send_from_directory('temp/', 'result.csv')
 
 api.add_resource(QrCodesAPI, '/qrcode/<int:id>/')
-api.add_resource(CsvAPI, '/csv/<tag>')
+api.add_resource(CsvAPI, '/csv/')
+api.add_resource(CsvsAPI, '/csv/<tag>')

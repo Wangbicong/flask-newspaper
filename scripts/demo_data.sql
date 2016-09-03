@@ -13,14 +13,14 @@ INSERT INTO newspapers(jou_id, sub_jou_id, name, pub_date)
     VALUES (1, 1, '华尔街日报', '2013-01-08');
 
 -- user demo data
-INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (13845924571, '刘二', '男', 18, '华尔街');
-INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (13789211278, '杜三', '女', 45, '哈尔滨');
+INSERT INTO users(phone_num, name, sex, age, address, status)
+    VALUES (13845924571, '刘二', '男', 18, '华尔街', '正确');
+INSERT INTO users(phone_num, name, sex, age, address, status)
+    VALUES (13789211278, '杜三', '女', 45, '哈尔滨', '空号');
 INSERT INTO users(phone_num, name, sex, age, address)
     VALUES (18245782014, '杜圣哲', '男', 88, '哈工大一区五公寓');
-INSERT INTO users(phone_num, name, sex, age, address)
-    VALUES (14577824571, '杜笑着', '女', 72, '不详');
+INSERT INTO users(phone_num, name, sex, age, address, status)
+    VALUES (14577824571, '杜笑着', '女', 72, '不详', '无人接听');
 INSERT INTO users(phone_num, name, sex, age, address)
     VALUES (12579014579, '杜子疼', '男', 16, '不想说');
 

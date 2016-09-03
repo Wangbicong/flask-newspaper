@@ -96,6 +96,24 @@ function add_user() {
         })
 }
 
+function import_user() {
+
+    var $title = $('<label>导入表格</label>');
+    BootstrapDialog.show({
+        title: $title,
+        message: function (dialogItself) {
+            var $form = $('<form role="form" action="/csv/" method="post" enctype="multipart/form-data">\
+    <div class="form-group"> \
+        <label for="file">文件输入</label> \
+        <input type="file" id="file" name="file"> \
+    </div>\
+    <button type="submit" value="Upload" class="btn btn-default">提交</button>\
+</form>');
+            return $form;
+        }
+    })
+}
+
 function del_newspaper() {
     if(NEWS_ID){
         $.ajax({
@@ -119,6 +137,18 @@ function del_user() {
                 // Do something with the result
             }
         });
+    }
+}
+function show_qrcode() {
+    if(NEWS_ID){
+        var $title = $('<label>报纸二维码</label>');
+        BootstrapDialog.show({
+            title: $title,
+            message: function (dialogItself) {
+                var $image = $('<image src="/qrcode/' + NEWS_ID +  '/">');
+                return $image;
+            }
+        })
     }
 }
 
