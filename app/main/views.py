@@ -26,6 +26,7 @@ def index():
         news_id = request.args.get('news_id')
         user_id = request.args.get('user_id')
 
+        tab = request.args.get('tab')
 
         user_data = []
         if phone_num:
@@ -66,7 +67,7 @@ def index():
             for news in Newspaper.query.all():
                 news_data.append(news.to_json())
         return render_template('index.html', news_data=news_data,
-                               user_data=user_data)
+                               user_data=user_data, tab_mark=tab)
     else:
         return redirect('/login/')
 
@@ -74,7 +75,7 @@ def index():
 @main_blueprint.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('signin.html')
+        return render_template('signin. ')
     else:
         args = parser.parse_args()
 

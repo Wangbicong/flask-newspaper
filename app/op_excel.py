@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 import codecs
 import xlrd
+from datetime import date
 from . import db
-from models import User, Record, Newspaper
+from models import User, Newspaper
 
 
 def output_news():
@@ -32,16 +33,38 @@ def import_user():
     sheet = workbook.sheet_by_index(0)
     for i in xrange(1, sheet.nrows):
         rows = sheet.row_values(i)
+        phone_num = int(rows[4])
         args = {
-            'phone_num': int(rows[4]),
+            'phone_num': phone_num,
             'name': rows[0],
             'sex': rows[1],
             'age': int(rows[2]),
             'address': rows[3],
             'status': rows[5]
         }
-        user = User(**args)
-        db.session.add(user)
+        if not User.query.filter_by(phone_num=phone_num).first():
+            user = User(**args)
+            db.session.add(user)
+
+
+def import_newspaper():
+    workbook = xlrd.open_workbook('app/temp/newspapers.xlsx')
+
+    sheet = workbook.sheet_by_index(0)
+    for i in xrange(1, sheet.nrows):
+        rows = sheet.row_values(i)
+        jou_id = rows[1]
+        name = rows[0]
+        pub_date = date(*xlrd.xldate_as_tuple(rows[3], workbook.datemode)[:3]).strftime('%Y-%m-%d')
+        args = {
+            'jou_id': jou_id,
+            'sub_jou_id': rows[2],
+            'name': name,
+            'pub_date': pub_date
+        }
+        if not Newspaper.query.filter_by(name=name, jou_id=jou_id).first():
+            news = Newspaper(**args)
+            db.session.add(news)
 
 if __name__ == '__main__':
     import_user()

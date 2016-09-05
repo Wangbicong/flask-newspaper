@@ -27,7 +27,7 @@ class Newspaper(db.Model):
             'jou_id': self.__dict__['jou_id'],
             'sub_jou_id': self.__dict__['sub_jou_id'],
             'name': self.__dict__['name'],
-            'pub_date': str(self.__dict__['pub_date'])
+            'pub_date': date_parse(self.__dict__['pub_date'])
         }
 
 

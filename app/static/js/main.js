@@ -102,7 +102,25 @@ function import_user() {
     BootstrapDialog.show({
         title: $title,
         message: function (dialogItself) {
-            var $form = $('<form role="form" action="/csv/" method="post" enctype="multipart/form-data">\
+            var $form = $('<form role="form" action="/csv/readers.xlsx" method="post" enctype="multipart/form-data">\
+    <div class="form-group"> \
+        <label for="file">文件输入</label> \
+        <input type="file" id="file" name="file"> \
+    </div>\
+    <button type="submit" value="Upload" class="btn btn-default">提交</button>\
+</form>');
+            return $form;
+        }
+    })
+}
+
+function import_newspaper() {
+
+    var $title = $('<label>导入表格</label>');
+    BootstrapDialog.show({
+        title: $title,
+        message: function (dialogItself) {
+            var $form = $('<form role="form" action="/csv/newspaper.xlsx" method="post" enctype="multipart/form-data">\
     <div class="form-group"> \
         <label for="file">文件输入</label> \
         <input type="file" id="file" name="file"> \
@@ -133,7 +151,7 @@ function del_user() {
             url: '/user/' + USER_ID +'/',
             type: 'DELETE',
             success: function(result) {
-                window.location.reload();
+                window.location.href='/?tab=user';
                 // Do something with the result
             }
         });

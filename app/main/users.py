@@ -29,7 +29,7 @@ class UsersAPI(Resource):
 
         user = User(**args)
         db.session.add(user)
-        return redirect('/')
+        return redirect('/?tab=user')
 
 
 class UserAPI(Resource):
