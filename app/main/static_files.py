@@ -13,7 +13,6 @@ class QrCodesAPI(Resource):
         return send_from_directory('temp/', 'qr_code.png')
 
 
-
 class CsvsAPI(Resource):
     def get(self, tag):
         if tag == 'newspaper.csv':
@@ -36,5 +35,14 @@ class CsvsAPI(Resource):
             import_newspaper()
             return redirect('/')
 
+class Csvs2API(Resource):
+    def get(self, id, tag):
+        # elif tag == 'record.csv':
+        #     pass
+        # elif tag == 'news.csv':
+        #     pass
+        pass
+
 api.add_resource(QrCodesAPI, '/qrcode/<int:id>/')
 api.add_resource(CsvsAPI, '/csv/<tag>')
+api.add_resource(Csvs2API, '/csv/<int:id>/<tag>')

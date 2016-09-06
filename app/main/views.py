@@ -75,7 +75,7 @@ def index():
 @main_blueprint.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('signin. ')
+        return render_template('signin.html')
     else:
         args = parser.parse_args()
 

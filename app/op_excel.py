@@ -35,16 +35,23 @@ def import_user():
         rows = sheet.row_values(i)
         phone_num = int(rows[4])
         args = {
-            'phone_num': phone_num,
+            'phone_num': int(phone_num),
             'name': rows[0],
             'sex': rows[1],
             'age': int(rows[2]),
             'address': rows[3],
             'status': rows[5]
         }
-        if not User.query.filter_by(phone_num=phone_num).first():
+        user = User.query.filter_by(phone_num=phone_num).first()
+        if not user:
             user = User(**args)
-            db.session.add(user)
+        else:
+            user.address = args['address']
+            user.name = args['name']
+            user.age = args['age']
+            user.status = args['status']
+            user.sex = args['sex']
+        db.session.add(user)
 
 
 def import_newspaper():
@@ -65,6 +72,9 @@ def import_newspaper():
         if not Newspaper.query.filter_by(name=name, jou_id=jou_id).first():
             news = Newspaper(**args)
             db.session.add(news)
+
+
+# def
 
 if __name__ == '__main__':
     import_user()

@@ -42,7 +42,9 @@
 
     <div class="tab-pane active" id="newspaper">
   	    <div>
-
+			<div id="newspaperButtons">
+  	    		<button type="button" class="btn btn-primary" onclick="window.location.href='csv/'+GetQueryString('news_id')+'/record.csv'">导出表格</button>
+			</div>
 			<div id="newspaperTable">
 				<table id='newsTable' class="table table-hover table-striped table-bordered">
   					<thead class="thead-default">
@@ -83,6 +85,6 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
 
-
+<script type="text/javascript" src="../static/js/main.js"></script>
 </body>
 </html>
