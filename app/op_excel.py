@@ -3,7 +3,7 @@ import codecs
 import xlrd
 from datetime import date
 from . import db
-from models import User, Newspaper
+from models import User, Newspaper, Record
 
 
 def output_news():
@@ -67,14 +67,39 @@ def import_newspaper():
             'jou_id': jou_id,
             'sub_jou_id': rows[2],
             'name': name,
-            'pub_date': pub_date
+            # 'pub_date': pub_date
         }
         if not Newspaper.query.filter_by(name=name, jou_id=jou_id).first():
             news = Newspaper(**args)
             db.session.add(news)
 
 
-# def
+def output_news_2(id):
+    with codecs.open('app/temp/result.csv', 'w',encoding='gbk') as f:
+        f.write(u'报纸名称,总期数,期数,发行日期\n')
+
+        for record in Record.query.filter_by(user_id=id).all():
+            data = Newspaper.query.filter_by(id=record.news_id).first()
+            data = data.to_json()
+            f.write(unicode(data['name']) + ',' + unicode(data['jou_id']) + ','
+                    + unicode(data['sub_jou_id']) + ',' + unicode(data['pub_date']) + '\n')
+
+
+def output_record(id):
+    with codecs.open('app/temp/result.csv', 'w',encoding='gbk') as f:
+        f.write(u'领取人姓名,领取号码,领取地点,领取时间\n')
+
+        for record in Record.query.filter_by(news_id=id).all():
+            user = User.query.filter_by(id=record.user_id).first()
+            daya = {
+                'id': record.id,
+                'name': user.name,
+                'phone_num': user.phone_num,
+                'station': record.station,
+                'date': record.date
+            }
+            f.write(unicode(user.name) + ',' + unicode(user.phone_num) + ','
+                    + unicode(record.station) + ',' + unicode(record.date) + '\n')
 
 if __name__ == '__main__':
     import_user()
