@@ -85,6 +85,73 @@ function add_user() {
             <input type="text" class="form-control" id="address" name="address">\
         </div>\
     </div>\
+    <div class="form-group"> \
+        <label for="status" class="col-sm-2 control-label">核实结果</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" id="status" name="status">\
+        </div>\
+    </div>\
+    <div class="form-group">\
+        <div class="col-sm-offset-2 col-sm-10">\
+            <button type="submit" class="btn btn-default">确认</button>\
+        </div>\
+    </div>\
+</form>');
+                return $form;
+            }
+        })
+}
+
+function update_user() {
+    user_data = [];
+    for (var i=1;i<=6;i++){
+        if (LAST_USER_ITEM.getElementsByTagName("td")[i].innerHTML == 'None'){
+            user_data.push('');
+        }else{
+            user_data.push(LAST_USER_ITEM.getElementsByTagName("td")[i].innerHTML);
+        }
+    }
+    var $title = $('<label>修改用户</label>');
+        BootstrapDialog.show({
+            title: $title,
+            message: function (dialogItself) {
+                var $form = $('<form class="form-horizontal" role="form" action="/user/' + USER_ID + '/" method="post"> \
+    <div class="form-group"> \
+        <label for="name" class="col-sm-2 control-label">姓名</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[0] + '" id="name" name="name">\
+        </div>\
+    </div>\
+    <div class="form-group"> \
+        <label for="phone_num" class="col-sm-2 control-label">手机号（必填）</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[1] + '" value="10" id="phone_num" name="phone_num">\
+        </div>\
+    </div>\
+    <div class="form-group"> \
+        <label for="age" class="col-sm-2 control-label">年龄</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[2] + '" id="age" name="age">\
+        </div>\
+    </div>\
+    <div class="form-group"> \
+        <label for="sex" class="col-sm-2 control-label">性别</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[3] + '" id="sex" name="sex">\
+        </div>\
+    </div>\
+    <div class="form-group"> \
+        <label for="address" class="col-sm-2 control-label">住址</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[4] + '" id="address" name="address">\
+        </div>\
+    </div>\
+    <div class="form-group"> \
+        <label for="status" class="col-sm-2 control-label">核实结果</label>\
+        <div class="col-sm-10">\
+            <input type="text" class="form-control" value="' + user_data[5] + '" id="status" name="status">\
+        </div>\
+    </div>\
     <div class="form-group">\
         <div class="col-sm-offset-2 col-sm-10">\
             <button type="submit" class="btn btn-default">确认</button>\
@@ -177,3 +244,4 @@ function GetQueryString(name)
      var r = window.location.search.substr(1).match(reg);
      if(r!=null)return  unescape(r[2]); return null;
 }
+

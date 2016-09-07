@@ -11,6 +11,7 @@ parser.add_argument('name', type=unicode, required=False)
 parser.add_argument('sex', type=unicode, required=False)
 parser.add_argument('age', type=str, required=False)
 parser.add_argument('address', type=unicode, required=False)
+parser.add_argument('status', type=unicode, required=False)
 
 
 class UsersAPI(Resource):
@@ -36,6 +37,27 @@ class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
         return jsonify(login_state=bool(User.query.filter_by(phone_num=id).first()))
+
+    def post(self, id):
+        user = User.query.filter_by(id=id).first()
+
+        args = parser.parse_args()
+        for key in args:
+            if len(args[key]) == 0:
+                args[key] = None
+
+        user.address = args['address']
+        user.name = args['name']
+        user.age = args['age']
+        user.status = args['status']
+        user.sex = args['sex']
+        user.phone_num = args['phone_num']
+
+        db.session.add(user)
+
+        return redirect('/?tab=user')
+
+
 
     def delete(self, id):
         user = User.query.filter_by(id=id).first()
