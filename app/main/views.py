@@ -28,26 +28,6 @@ def index():
 
         tab = request.args.get('tab')
 
-        user_data = []
-        if phone_num:
-            for user in User.query.filter_by(phone_num=phone_num).all():
-                user_data.append(user.to_json())
-        elif news_id:
-            record_data=[]
-            for record in Record.query.filter_by(news_id=news_id).all():
-                user = User.query.filter_by(id=record.user_id).first()
-                record_data.append({
-                    'id': record.id,
-                    'name': user.name,
-                    'phone_num': user.phone_num,
-                    'station': record.station,
-                    'date': record.date
-                })
-            return render_template('record.html', record_data=record_data)
-        else:
-            for user in User.query.all():
-                user_data.append(user.to_json())
-
         news_data = []
         if news_name and jou_id:
             for news in Newspaper.query.filter_by(name=news_name,
@@ -66,6 +46,29 @@ def index():
         else:
             for news in Newspaper.query.all():
                 news_data.append(news.to_json())
+
+        user_data = []
+        if phone_num:
+            for user in User.query.filter_by(phone_num=phone_num).all():
+                user_data.append(user.to_json())
+            return render_template('index.html', news_data=news_data,
+                     user_data=user_data, tab_mark='user')
+        elif news_id:
+            record_data=[]
+            for record in Record.query.filter_by(news_id=news_id).all():
+                user = User.query.filter_by(id=record.user_id).first()
+                record_data.append({
+                    'id': record.id,
+                    'name': user.name,
+                    'phone_num': user.phone_num,
+                    'station': record.station,
+                    'date': record.date
+                })
+            return render_template('record.html', record_data=record_data)
+        else:
+            for user in User.query.all():
+                user_data.append(user.to_json())
+
         return render_template('index.html', news_data=news_data,
                                user_data=user_data, tab_mark=tab)
     else:
