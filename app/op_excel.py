@@ -67,7 +67,7 @@ def import_newspaper():
             'jou_id': jou_id,
             'sub_jou_id': rows[2],
             'name': name,
-            # 'pub_date': pub_date
+            'pub_date': pub_date
         }
         if not Newspaper.query.filter_by(name=name, jou_id=jou_id).first():
             news = Newspaper(**args)
