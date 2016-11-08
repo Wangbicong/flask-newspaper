@@ -30,7 +30,11 @@ class UsersAPI(Resource):
 class UserAPI(Resource):
     '''id为user的phone number'''
     def get(self, id):
-        return jsonify(login_state=bool(User.query.filter_by(phone_num=id).first()))
+        user = User.query.filter_by(phone_num=id).first()
+        if user:
+            return jsonify(login_state=True, name=user.name)
+        else:
+            return jsonify(login_state=False, name=None)
 
     def delete(self, id):
         pass
