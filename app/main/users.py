@@ -25,7 +25,7 @@ class UsersAPI(Resource):
 
         args = parser.parse_args()
         for key in args:
-            if len(args[key]) == 0:
+            if not args[key]:
                 args[key] = None
 
         user = User(**args)

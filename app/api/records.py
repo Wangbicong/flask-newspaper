@@ -24,7 +24,8 @@ class RecordsAPI(Resource):
 class RecordAPI(Resource):
     '''User的id为user的phone number'''
     def get(self, id):
-        user_id = User.query.filter_by(phone_num=id).first().id
+        user = User.query.filter_by(phone_num=id).first()
+        user_id = user.id
         news_id = Newspaper.query.filter_by(name=request.args.get('name'),
                                             jou_id=request.args.get('jou_id')).first().id
         record = Record.query.filter_by(user_id=user_id, news_id=news_id).first()
@@ -32,10 +33,10 @@ class RecordAPI(Resource):
         if record:
             date = date_parse(record.date)
             return jsonify(receive_state=bool(record), news_num=len(Record.query.filter_by(user_id=user_id).all()),
-                       date=date, station=record.station)
+                       date=date, station=record.station, user_name=user.name)
         else:
             return jsonify(receive_state=bool(record), news_num=len(Record.query.filter_by(user_id=user_id).all()),
-                   date=None, station=None)
+                   date=None, station=None, user_name=user.name)
 
     def put(self, id):
         args = parser.parse_args()
