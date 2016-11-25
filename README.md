@@ -1,4 +1,4 @@
-# flask-newspaper  
+# newspaper-manage-system
 
 ## 项目背景
 
