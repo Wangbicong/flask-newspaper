@@ -36,5 +36,5 @@
     
 ### 部署
 
-使用flask+nginx+supervisor方案。    
+使用flask+nginx+gunicorn+supervisor方案。    
     
