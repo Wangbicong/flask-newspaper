@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from flask import redirect
 from newspaper import app
 
 
 @app.route('/')
 def index():
-    return 'Hello World!'
+    return redirect('/admin')
