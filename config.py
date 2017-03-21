@@ -3,7 +3,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
 
-    SQLALCHEMY_DATABASE_URI = "mysql://root:0122@localhost/newspaper"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:@localhost/newspaper"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 

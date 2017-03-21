@@ -18,10 +18,17 @@ class Reader(db.Model):
     phone_number = db.Column(db.String(11))
     name = db.Column(db.String(20))
     sex = db.Column(db.String(1))
-    wallet = db.Column(db.Integer, default=0, nullable=False)
+    wallet = db.Column(db.Integer, default=0)
 
-    def __init__(self, wechat_key):
+    def __init__(self, wechat_key, phone_number=None):
         self.wechat_key = wechat_key
+        self.phone_number = phone_number
+
+    @staticmethod
+    def add_reader(**kwargs):
+        reader = Reader(**kwargs)
+        db.session.add(reader)
+        db.session.commit()
 
 
 class Newspaper(db.Model):
@@ -44,8 +51,3 @@ class RedPacketRecord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     money = db.Column(db.Integer)
     receive_time = db.Column(db.DateTime)
-
-
-if __name__ == '__main__':
-    from newspaper import create_app
-    db.create_all(app=create_app())

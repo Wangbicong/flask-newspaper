@@ -8,7 +8,7 @@
 
 导入`Flask_APP`：
 
-    export FLASK_APP=yourapplication
+    export FLASK_APP=newspaper
 
 安装相关依赖并运行：
 
