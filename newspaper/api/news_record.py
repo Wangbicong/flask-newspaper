@@ -2,15 +2,15 @@ from newspaper.models import NewspaperRecord
 from flask_restful import Resource, reqparse, fields, marshal_with
 
 news_record_parser = reqparse.RequestParser()
-news_record_parser.add_argument('wechat_key', type=str, required=True)
+news_record_parser.add_argument('person_key', type=str, required=True)
 news_record_parser.add_argument('location', type=unicode, required=True)
 news_record_parser.add_argument('journal_id', type=int, required=True)
-news_record_parser.add_argument('news_name', type=unicode, required=True)
+news_record_parser.add_argument('area', type=unicode, required=True)
 
 news_record_fields = {
-    'wechat_key': fields.String,
+    'person_key': fields.String,
     'journal_id': fields.Integer,
-    'news_name': fields.String,
+    'area': fields.String,
     'location': fields.String
 }
 

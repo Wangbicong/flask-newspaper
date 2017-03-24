@@ -11,6 +11,8 @@ setup(
         'flask-sqlalchemy',
         'flask-restful',
         'mysql-python',
+        'qrcode',
+        'pillow',
         'requests'
     ],
 )

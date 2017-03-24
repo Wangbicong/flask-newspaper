@@ -94,3 +94,8 @@ ENV/
 # Pycharm configs
 
 .idea
+
+# static files
+
+newspaper/static/qrcode.png
+newspaper/static/app
